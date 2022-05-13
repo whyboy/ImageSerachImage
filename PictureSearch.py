@@ -18,10 +18,10 @@ class searcher:
         indexParams=dict(algorithm=FLANN_INDEX_KDTREE,trees=5)
         searchParams=dict(checks=50)
         self.flann=cv2.FlannBasedMatcher(indexParams,searchParams)
-        self.imageCollection = self.__readAllImages()
+        self.imageCollection = self.__loadAllImages()
 
 
-    def __readAllImages(self):
+    def __loadAllImages(self):
         imageCollection=[]
         for parent,dirnames,filenames in os.walk(self.queryPath):
             for p in filenames:

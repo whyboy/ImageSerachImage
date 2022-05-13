@@ -18,6 +18,17 @@ class searcher:
         indexParams=dict(algorithm=FLANN_INDEX_KDTREE,trees=5)
         searchParams=dict(checks=50)
         self.flann=cv2.FlannBasedMatcher(indexParams,searchParams)
+        self.imageCollection = self.__readAllImages()
+
+
+    def __readAllImages(self):
+        imageCollection=[]
+        for parent,dirnames,filenames in os.walk(self.queryPath):
+            for p in filenames:
+                p=queryPath+p
+                image=cv2.imread(p,0)
+                imageCollection.append(image)
+        return imageCollection
 
 
     def start(self):
@@ -25,10 +36,12 @@ class searcher:
         kp1, des1 = self.sift.detectAndCompute(sampleImage, None) #提取样本图⽚的特征
 
         comparisonImageList = []
-        for parent,dirnames,filenames in os.walk(self.queryPath):
-            for p in filenames:
-                p=queryPath+p
-                queryImage=cv2.imread(p,0)
+        # for parent,dirnames,filenames in os.walk(self.queryPath):
+        #     for p in filenames:
+        #         p=queryPath+p
+        #         queryImage=cv2.imread(p,0)
+
+        for queryImage in self.imageCollection:
                 kp2, des2 = self.sift.detectAndCompute(queryImage, None) #提取⽐对图⽚的特征
                 matches=self.flann.knnMatch(des1,des2,k=2) #匹配特征点，为了删选匹配点，指定k为2，这样对样本图的每个特征点，返回两个匹配
                 (matchNum,matchesMask)=self.__getMatchNum(matches,0.9) #通过⽐率条件，计算出匹配程度

@@ -43,12 +43,6 @@ def imageNameConverterHelper(infoCsvFilePath):
 if __name__ == '__main__':
     infoFilePath = "C:/Users/whaiyan/Desktop/crawlResult/BoredApe_0-30.csv"
     imageNameConverterHelper(infoFilePath)
-    
-    # with open(infoFilePath, encoding="utf8") as f:
-    #     line = f.readline()
-    #     while line:
-    #         print(line)
-    #         line = f.readline()
 
 
 

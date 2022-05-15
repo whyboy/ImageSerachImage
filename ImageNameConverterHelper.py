@@ -19,11 +19,10 @@ def imageNameConverterHelper(infoCsvFilePath):
 
     srcImageFolder = 'C:/Users/whaiyan/Desktop/crawlResult/Image_0-30'
     storeImageFolder = 'C:/Users/whaiyan/Desktop/crawlResult/Image_0-30-new'
+    storeInfoCsv = "C:/Users/whaiyan/Desktop/crawlResult/Image_0-30-new.csv"
     colums = df.columns.values
     print(colums)
     for index, row in df.iterrows():
-        # print(index)
-        # print(row)
         imagePath = row[colums[1]]
         imageName = imagePath.split("\\")[-1]
         imageId = row[colums[2]]
@@ -37,10 +36,8 @@ def imageNameConverterHelper(infoCsvFilePath):
         cv2.imwrite(storeImagePath, srcImage)
 
     print(df.head(5))
-
-    
-    
-
+    df_ = df[colums[2::]]
+    df_.to_csv(storeInfoCsv)
 
 
 if __name__ == '__main__':

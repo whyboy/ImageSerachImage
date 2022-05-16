@@ -25,7 +25,7 @@ class searcher:
         imageCollection=[]
         for parent,dirnames,filenames in os.walk(self.queryPath):
             for imgName in filenames:
-                filePath=queryPath+imgName
+                filePath=self.queryPath+imgName
                 image=cv2.imread(filePath,0)
                 imageCollection.append((image, imgName))
         return imageCollection
@@ -69,18 +69,21 @@ class searcher:
         return (matchNum,matchesMask)
 
 
-if __name__ == "__main__":
-    # path='C:/Users/whaiyan/Desktop/PictureSearchPicture/'
-    # queryPath=path+'Pictures/' #图库路径
-    # samplePath=path+'Sample/sample.PNG' #样本图⽚
+# if __name__ == "__main__":
+#     # path='C:/Users/whaiyan/Desktop/PictureSearchPicture/'
+#     # queryPath=path+'Pictures/' #图库路径
+#     # samplePath=path+'Sample/sample.PNG' #样本图⽚
 
-    samplePath=sys.argv[1]
-    queryPath=sys.argv[2]
+#     # samplePath=sys.argv[1]
+#     # queryPath=sys.argv[2]
+
+#     samplePath="./Sample/image.PNG"
+#     queryPath="./Pictures/"
     
-    obj = searcher(samplePath, queryPath)
-    comparisonImageList=obj.start()
-    topMatchImageName=comparisonImageList[0][2]
-    print(topMatchImageName)
+#     obj = searcher(samplePath, queryPath)
+#     comparisonImageList=obj.start()
+#     topMatchImageName=comparisonImageList[0][2]
+#     print(topMatchImageName)
 
     #  # 绘图显⽰
     # count=len(comparisonImageList)

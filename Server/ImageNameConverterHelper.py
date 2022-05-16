@@ -8,7 +8,8 @@ import cv2
 import pandas as pd
 import numpy as np
 
-# def findMissingImageIds(folder):
+def findMissingImageIds(folder):
+    
 
 
 
@@ -45,27 +46,27 @@ def imageNameConverterHelper(folder):
     df = df.sort_values(by=colums[2])
     df = df.reset_index()
 
-    # for index, row in df.iterrows():
+    for index, row in df.iterrows():
 
-    #     imagePath = row[colums[1]]
-    #     if str(imagePath) == "nan":
-    #         print("index:" + str(index) + " imagePath is Nan")
-    #         continue
-    #     imageName = imagePath.split("\\")[-1]
+        imagePath = row[colums[1]]
+        if str(imagePath) == "nan":
+            print("index:" + str(index) + " imagePath is Nan")
+            continue
+        imageName = imagePath.split("\\")[-1]
         
-    #     imageId = row[colums[2]]
-    #     if str(imageId) == "nan":
-    #         print("index: " + str(index) + " imageId is nan")
-    #         continue
+        imageId = row[colums[2]]
+        if str(imageId) == "nan":
+            print("index: " + str(index) + " imageId is nan")
+            continue
 
-    #     imageId = row[colums[2]][1::]
+        imageId = row[colums[2]][1::]
         
-    #     srcImagePath = os.path.join(srcImageFolder, imageName)
-    #     storeImagePath = os.path.join(storeImageFolder, imageId + ".PNG")
+        srcImagePath = os.path.join(srcImageFolder, imageName)
+        storeImagePath = os.path.join(storeImageFolder, imageId + ".PNG")
         
-    #     # print(storeImagePath)
-    #     srcImage = cv2.imread(srcImagePath)
-    #     cv2.imwrite(storeImagePath, srcImage)
+        # print(storeImagePath)
+        srcImage = cv2.imread(srcImagePath)
+        cv2.imwrite(storeImagePath, srcImage)
 
     
     print(df.head(5))
@@ -74,8 +75,8 @@ def imageNameConverterHelper(folder):
 
 
 if __name__ == '__main__':
-    folder = "C:/Users/whaiyan/Desktop/final_crawel/"
-    imageNameConverterHelper(folder)
+    # folder = "C:/Users/whaiyan/Desktop/final_crawel/"
+    # imageNameConverterHelper(folder)
 
 
 
